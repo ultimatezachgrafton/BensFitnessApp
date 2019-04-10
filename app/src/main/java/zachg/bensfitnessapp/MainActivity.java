@@ -1,41 +1,34 @@
 package zachg.bensfitnessapp;
 
 import android.os.Bundle;
-import android.service.autofill.UserData;
-import androidx.appcompat.app.ActionBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.room.Room;
+import login.LoginFragment;
 import login.UserDatabase;
 
-// MainActivity hosts the LoginActivity screen which leads to the Report fragment for users
-// or the Admin fragment for Admin
+//import static zachg.bensfitnessapp.R.id.fragment_container;
+import static zachg.bensfitnessapp.SingleFragmentActivity.fm;
+
+// MainActivity launches LoginFragment and RegisterFragment
 
 public class MainActivity extends AppCompatActivity {
-
-    UserDatabase userDatabase;
+    public static FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_fragment);
+        fm = getSupportFragmentManager();
 
-        UserDatabase userDatabase;
+        if (findViewById(R.id.fragment_container)!=null) {
+            if (savedInstanceState!=null) {
+                return;
+            }
+            fm.beginTransaction().add(R.id.fragment_container, new LoginFragment()).commit();
+        }
     }
 }
-
-/*public class MainActivity extends SingleFragmentActivity
-    @Override
-    protected Fragment createFragment() {
-        UUID reportId = (UUID) getIntent().getSerializableExtra(EXTRA_REPORT_ID);
-        return ReportFragment.newInstance(reportId);
-    }
-
-    // Creates explicit intent, and pass in a Serializable key value to create new Reports
-    private static final String EXTRA_REPORT_ID = "zachg.bensfitnessapp.report_id";
-    public static Intent newIntent(Context packageContext, UUID reportId) {
-        Intent intent = new Intent(packageContext, MainActivity.class);
-        intent.putExtra(EXTRA_REPORT_ID, reportId);
-        return intent;
-    }
-}
-*/

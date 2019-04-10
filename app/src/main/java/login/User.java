@@ -1,5 +1,7 @@
 package login;
 
+import java.util.UUID;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -9,25 +11,21 @@ import androidx.room.PrimaryKey;
 public class User {
 
     @PrimaryKey @NonNull
-    public String username;
+    public String id;
+    @ColumnInfo
+    public String clientName;
     @ColumnInfo(name = "birthday")
     public String birthday;
     @ColumnInfo(name = "password")
     public String password;
-    @ColumnInfo(name = "clientName")
-    public String clientName;
     @ColumnInfo(name = "gender")
     public String gender;
     @ColumnInfo(name = "isAdmin")
     public boolean isAdmin;
 
-    public String getUsername() {
-        return username;
-    }
+    public String getId(){ return id; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setId(String id){ this.id = id; }
 
     public String getBirthday() {
         return birthday;

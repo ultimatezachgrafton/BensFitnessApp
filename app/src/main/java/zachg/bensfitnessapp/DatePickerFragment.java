@@ -22,7 +22,6 @@ import java.util.GregorianCalendar;
 public class DatePickerFragment extends DialogFragment {
 
     public static final String EXTRA_DATE = "zachg.bensfitnessapp.date";
-
     private static final String ARG_DATE = "date";
     private android.widget.DatePicker mDatePicker;
 

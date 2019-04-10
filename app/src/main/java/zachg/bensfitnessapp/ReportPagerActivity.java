@@ -15,9 +15,9 @@ import java.util.UUID;
 
 public class ReportPagerActivity extends AppCompatActivity implements ReportFragment.Callbacks {
 
+    // ReportPagerActivity is the Activity for Reports utilizing ViewPager to allow the user to swipe left and right on reports
 
-    // ReportPagerActivity is the ViewPager which allows you to swipe left and right on reports
-
+    // Creates explicit intent, and pass in a Serializable key value to create new Reports
     private static final String EXTRA_REPORT_ID = "zachg.bensfitnessapp.report_id";
 
     private ViewPager mViewPager;

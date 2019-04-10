@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import androidx.fragment.app.Fragment;
-//import androidx.core.app.FragmentManager;
 import androidx.core.content.FileProvider;
 
 import android.text.format.DateFormat;

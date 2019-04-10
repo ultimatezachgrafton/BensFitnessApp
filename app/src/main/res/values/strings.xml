@@ -36,4 +36,7 @@
     <string name="fats">Amount of fat in grams:</string>
     <string name="carbs">Amount of carbs in grams:</string>
     <string name="protein">Amount of protein in grams:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
