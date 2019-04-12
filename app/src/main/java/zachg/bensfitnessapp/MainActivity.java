@@ -3,6 +3,8 @@ package zachg.bensfitnessapp;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.UUID;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,20 +17,11 @@ import static zachg.bensfitnessapp.SingleFragmentActivity.fm;
 
 // MainActivity launches LoginFragment and RegisterFragment
 
-public class MainActivity extends AppCompatActivity {
-    public static FragmentManager fm;
+public class MainActivity extends SingleFragmentActivity {
+    //public static FragmentManager fm;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
-        fm = getSupportFragmentManager();
-
-        if (findViewById(R.id.fragment_container)!=null) {
-            if (savedInstanceState!=null) {
-                return;
-            }
-            fm.beginTransaction().add(R.id.fragment_container, new LoginFragment()).commit();
-        }
+    protected Fragment createFragment() {
+        return new LoginFragment();
     }
 }

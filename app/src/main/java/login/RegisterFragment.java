@@ -10,9 +10,14 @@ import android.widget.Toast;
 
 import java.util.UUID;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.room.DatabaseConfiguration;
+import androidx.room.InvalidationTracker;
 import androidx.room.Room;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
 import zachg.bensfitnessapp.R;
+import login.UserDatabase;
 
 import static java.util.UUID.randomUUID;
 
@@ -24,7 +29,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         // Required empty constructor
     }
 
-    Button bRegister;
+    public static Button bRegister;
     EditText etPassword, etConfirmPassword, etClientName;
     public static UserDatabase sUserDatabase;
 
@@ -39,7 +44,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
         bRegister.setOnClickListener(this);
 
-        sUserDatabase = Room.databaseBuilder(getActivity(), UserDatabase.class, "userdb").allowMainThreadQueries()
+        sUserDatabase = Room.databaseBuilder(getActivity(), UserDatabase.class, "users").allowMainThreadQueries()
                 .fallbackToDestructiveMigration().build();
 
         return view;
@@ -53,7 +58,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 String password = etPassword.getText().toString();
                 String confirmPassword = etConfirmPassword.getText().toString();
 
-                if (password == confirmPassword) {
+                if (password.equals(confirmPassword)) {
 
                     User registeredData = new User();
 
@@ -72,7 +77,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                     etClientName.setText(clientName);
                     etPassword.setText(password);
                 } else {
-                    Toast.makeText(getActivity(), "Passwords do not match.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Passwords do not match. " + password + " " + confirmPassword,
+                            Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

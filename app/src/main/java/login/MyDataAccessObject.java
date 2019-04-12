@@ -14,4 +14,5 @@ public interface MyDataAccessObject {
 
     @Query("select * from users")
     List<User> getUsers();
+
 }

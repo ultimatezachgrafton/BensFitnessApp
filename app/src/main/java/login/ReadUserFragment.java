@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.room.Room;
+import login.UserDatabase;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.room.DatabaseConfiguration;
@@ -20,7 +24,7 @@ import zachg.bensfitnessapp.MainActivity;
 import zachg.bensfitnessapp.R;
 import zachg.bensfitnessapp.SingleFragmentActivity;
 
-import static zachg.bensfitnessapp.SingleFragmentActivity.sUserDatabase;
+import static login.UserDatabase.sUserDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,6 +44,35 @@ public class ReadUserFragment extends Fragment {
 
         Txtinfo = view.findViewById(R.id.txtinfo);
         String info = "";
+
+        User ben = new User();
+        UserDatabase sUserDatabase = new UserDatabase() {
+            @Override
+            public MyDataAccessObject myDao() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration config) {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            protected InvalidationTracker createInvalidationTracker() {
+                return null;
+            }
+
+            @Override
+            public void clearAllTables() {
+
+            }
+        };
+
+        sUserDatabase = Room.databaseBuilder(getActivity(), UserDatabase.class, "users").allowMainThreadQueries()
+                .fallbackToDestructiveMigration().build();
+        //sUserDatabase.myDao().addUser(ben);
 
         if (sUserDatabase != null) {
             List<User> users = sUserDatabase.myDao().getUsers();
